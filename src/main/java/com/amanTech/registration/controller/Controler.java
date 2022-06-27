@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.amanTech.registration.dto.UserDetail;
 import com.amanTech.registration.repo.EmailService;
 import com.amanTech.registration.repo.UserDetailRepo;
+import com.amanTech.registration.service.Admin;
 import com.amanTech.registration.service.RegisterUser;
 import com.amanTech.registration.service.ValidateToken;
 import com.amanTech.registration.service.VerifyLogin;
@@ -32,6 +33,8 @@ public class Controler {
 	UserDetailRepo userDetailRepo;
 	@Autowired
 	VerifyLogin verifyLogin;
+	@Autowired
+	Admin adminObj;
 
 	@GetMapping("/registerHome")
 	public ModelAndView registerHome() {
@@ -45,7 +48,7 @@ public class Controler {
 			@RequestParam(name = "lastName") String lastName, @RequestParam(name = "email") String email,
 			@RequestParam(name = "mobNo") String mobile, @RequestParam(name = "password") String password) {
 		UserDetail userObj = new UserDetail(firstName, lastName, email, mobile,
-				Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString(), false,0);
+				Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString(), false, 0);
 		return registerUser.register(userObj);
 	}
 
@@ -65,6 +68,12 @@ public class Controler {
 	public String userLogin(@RequestParam(name = "username") String userName,
 			@RequestParam(name = "password") String password) {
 		return verifyLogin.verify(userName, password);
+	}
+
+	@PostMapping("/unlockAccount")
+	public String unlock(@RequestParam(name = "username") String username) {
+
+		return adminObj.unlockAccount(username);
 	}
 
 }
