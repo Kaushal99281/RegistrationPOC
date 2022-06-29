@@ -46,7 +46,13 @@ public class UserDetail {
 		this.isActive = isActive;
 		this.invalidAttemps=invalidAttemps;
 	}
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getInvalidAttemps() {
 		return invalidAttemps;

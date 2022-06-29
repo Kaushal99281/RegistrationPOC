@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>User List</title>
+	<link rel="stylesheet" 
+			type="text/css" 
+			href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+</head>
+<body>
+
+	<div class="container text-center">
+		
+		<table class="table table-bordered table-striped" id="employeeTable">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">CONTACT</th>
+      <th scope="col">INVALID-ATTEMPS</th>
+      <th scope="col">ACTIVE STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="user: ${userList}">
+      <b><td th:text="${user.id}"></td></b>
+      <td th:text="${user.firstName}"></td>
+      <td th:text="${user.lastName}"></td>
+      <td th:text="${user.email}"></td>
+      <td th:text="${user.mobNo}"></td>
+      <td th:text="${user.invalidAttemps}"></td>
+      <td th:text="${user.isActive}"></td>
+    </tr>
+  </tbody>
+</table>
+
+	</div>
+	<div class="container">
+		<button type="button" class="btn btn-primary">New Registration</button>
+	</div>
+	
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#employeeTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] /* 1st one, start by the right */
+    				}]
+				});
+			})
+		</script>
+
+</body>
+</html>

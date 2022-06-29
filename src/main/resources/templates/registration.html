@@ -103,26 +103,26 @@ body {
 </head>
 <body>
 <div class="signup-form">
-    <form action="http://localhost:8080/registration/registerUser" method="post">
+    <form th:action="@{registerUser}" th:object="${userObj}" method="POST">
 		<h2>Register</h2>
 		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
         <div class="form-group">
 			<div class="row">
-				<div class="col"><input type="text" class="form-control" name="firstName" placeholder="First Name" required="required"></div>
-				<div class="col"><input type="text" class="form-control" name="lastName" placeholder="Last Name" required="required"></div>
+				<div class="col"><input type="text" class="form-control" th:field="*{firstName}" placeholder="First Name" required="required"></div>
+				<div class="col"><input type="text" class="form-control" th:field="*{lastName}" placeholder="Last Name" required="required"></div>
 			</div>        	
         </div>
         <div class="form-group">
-        	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
+        	<input type="email" class="form-control" th:field="*{email}" name="email" placeholder="Email" required="required">
         </div>
         <div class="form-group">
-        	<input type="text" class="form-control" name="mobNo" placeholder="Mobile No." required="required">
+        	<input type="text" class="form-control" th:field="*{mobNo}" placeholder="Mobile No." required="required">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control" th:field="*{password}" placeholder="Password" required="required">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+            <input type="password" class="form-control" placeholder="Confirm Password" required="required">
         </div>        
         <div class="form-group">
 			<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
